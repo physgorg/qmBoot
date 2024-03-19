@@ -1,9 +1,8 @@
-QMBoot Numerical Bootstrap Package
+# QMBoot Numerical Bootstrap Package
 
-As seen in https://arxiv.org/abs/2209.14332
+Code for the semidefinite programming algorithm described in https://doi.org/10.1103/PhysRevE.107.L053301
 
 by George Hulsey
-
 Mar 2023
 
 Dependencies: 
@@ -20,13 +19,9 @@ Dependencies:
 	GNU multiple-precision arithmetic (GMP)
 	SDPA-GMP
 
-##########################################################
+## Overview of files
 
-# OVERVIEW OF FILES
-
-##########################################################
-
--- sym_recursion.py
+### sym_recursion.py
 
 This file contains code which computes the moment recursion for a given potential on some specified domain. 
 
@@ -50,9 +45,9 @@ The option "v" specifies verbosity, which has the program output lots of message
 
 This file should be imported in general, and its functions are applied in the other python files included. 
 
-##########################################################
 
--- qmboot_lib.py
+
+### qmboot_lib.py
 
 This file contains classes and search functions. This is essentially the home of higher-level executable code. 
 
@@ -69,9 +64,9 @@ Example:
 	output_data_directory = "/Users/gorg/qmBootstrap/data" 
 
 
-##########################################################
 
--- qmboot_funcs.py
+
+### qmboot_funcs.py
 
 This file currently (July 2023) only contains one function "Krange_Search", which takes as input a potential and searches an energy range for eigenvalues over a range of depths. This eventually returns a dictionary of results. 
 
