@@ -134,12 +134,12 @@ def RpmomentSeq(N,Vcoeffs,BC, L = 0, mass = 1/2,v = True):
 			if v: print("Boundary conditions: a = -\u03C8'({})/\u03C8({}) = {}".format(L,L,BC))
 
 		except ValueError:
-			raise ValueError("Invalid boundary condition. Try 'Dirichlet','Neumann', or a real number.")
+			print("Invalid boundary condition. Try 'Dirichlet','Neumann', or a real number.")
 			return None
 
 	def anom_fprime(n): # anomaly A(f'_n) = <(H^* - H)f'_n(x)>
 		if L != 0:
-			raise ValueError("L != 0 not supported. Change coords so boundary is at zero.")
+			print("L != 0 not supported. Change coords so boundary is at zero.")
 			return None
 		else:
 			if n == 2:
@@ -153,13 +153,14 @@ def RpmomentSeq(N,Vcoeffs,BC, L = 0, mass = 1/2,v = True):
 
 		if L == 0:
 			if n == 0:
+				# print("EVALUATED THE KEY ANOMALY")
 				return 1/mass*psi_primeL2 + 2*psiL2*(e - pcoeffs[0])
 			elif n == 1:
 				return -1/mass*psi_primeLpsiL
 			elif n > 1:
 				return 0
 		else:
-			raise ValueError("L != 0 not supported. Change coords so boundary is at zero.")
+			print("L != 0 not supported. Change coords so boundary is at zero.")
 			return None
 
 	# moment x_{p} is lowest determined
@@ -210,10 +211,10 @@ def momentSeq(N,Vcoeffs,domain,L = 0,BC = None,v = False):
 	elif domain == "R+": 
 		# half line problem. 
 		if BC == None:
-			raise ValueError("No boundary information supplied. Terminating")
+			print("No boundary information supplied. Terminating")
 			return None 
 		elif L != 0:
-			raise ValueError("L != 0 is not supported right now. change your coordinates.")
+			print("L != 0 is not supported right now. change yo coordinates.")
 			return None
 		else:
 

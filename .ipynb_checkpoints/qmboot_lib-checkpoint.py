@@ -56,11 +56,10 @@ def SDPA_Fmats(Fv,no_t = False): # create Fmats with SDPA format: -F0,-Id,F1,F2,
 
 def getIntervals(x,y,eps = 0): # gets x intervals where yvals > -1*eps. Cutoff eps available but not currently used. 
 	# get intervals of positivity
-	# try:
-	# 	pos_inds = [i for i in range(len(x)) if y[i] > -1*eps]
-	# except IndexError:
-	# 	pos_inds = [i for i in range(len(y)) if y[i] > -1*eps] 
-	pos_inds = np.where(np.array(y) > -1*eps)[0]
+	try:
+		pos_inds = [i for i in range(len(x)) if y[i] > -1*eps]
+	except IndexError:
+		pos_inds = [i for i in range(len(y)) if y[i] > -1*eps] 
 	cons = consecutive(pos_inds)
 	intervals = []
 	for inds in cons: # take care with boundaries
@@ -435,13 +434,13 @@ if __name__ == '__main__':
 		prob.rangeSDPsolve(erange)
 
 		vals = np.asarray(prob.getVals(erange))
-		# print(vals)
+		print(vals)
 		# print("\n",bc,"\n")
 		plt.plot(erange,np.log(np.abs(vals)),label = "K = {}".format(depth))
 		plt.xlabel("energy E")
 		plt.ylabel("log(|t|) objective function")
 		# plt.title("neumann BCs on half line")
-	
+				
 	plt.legend()
 	plt.show()
 

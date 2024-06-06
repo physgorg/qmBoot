@@ -18,9 +18,9 @@ from qmboot_lib import *
 
 # it discretizes the energy range and does a search at each value of K, recording the intervals of positivity in a dict.
 
-def Krange_Search(pfunc,domain,krange,elims,BC = None,L = 0,bins = 300,v = False,readvals = False,kstep = 1):
+def Krange_Search(pfunc,domain,krange,elims,BC = None,L = 0,bins = 300,v = False,readvals = False):
 
-	kr = np.arange(krange[0],krange[1]+1,kstep) # construct K range
+	kr = np.arange(krange[0],krange[1]+1) # construct K range
 
 	espaces = [np.linspace(elims[0],elims[1],num = bins)] # construct energy range
 
@@ -43,7 +43,7 @@ def Krange_Search(pfunc,domain,krange,elims,BC = None,L = 0,bins = 300,v = False
 			if not readvals:
 				the_boot.rangeSDPsolve(espace)
 
-			values = np.array(the_boot.getVals(espace,fname = "vals"+str(j)+".txt",t_only = True))
+			values = the_boot.getVals(espace,fname = "vals"+str(j)+".txt",t_only = True)
 
 			intss =  getIntervals(espace,values)
 
